@@ -31,6 +31,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
         flex \
         git \
         bash-completion \
+        bsdtar \
         rsync \
         wget \
         ccache \
@@ -41,15 +42,14 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
         code \
         enchant && \
     apt-get install -y --no-install-recommends \
-        python3-pip \
-        python3-dev \
-        python3-wheel \
         pandoc \
         ttf-dejavu && \
     apt-get clean && \
+    curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python3 get-pip.py && \
     pip3 install -U \
-        pip \
-        setuptools && \
+        setuptools \
+	ipython && \
     pip3 install -U \
         autopep8 \
         flake8 \
@@ -101,6 +101,6 @@ RUN mkdir -p $DOCKER_HOME/.vscode && \
         do \
             code --install-extension $ext; \
         done' && \
-        chmod -R a+r $DOCKER_HOME/.config
+        chmod -R a+r $HOME/.config
 
 USER root
