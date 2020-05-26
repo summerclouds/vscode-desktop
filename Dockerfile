@@ -1,4 +1,4 @@
-# Builds a Docker image with Ubuntu 18.04 and Visual Studio Code
+# Builds a Docker image with Ubuntu 20.04 and Visual Studio Code
 # for scientific computing, including language supports for C/C++,
 # Python, FORTRAN, MATLAB, Markdown, LaTeX, and Doxygen. Also
 # enables the extensions doxygen, gitLens, terminal, clang-format,
@@ -7,7 +7,7 @@
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
 
-FROM x11vnc/desktop:18.04
+FROM x11vnc/desktop:20.04
 LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 
 USER root
@@ -49,6 +49,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
         ttf-dejavu && \
     apt-get clean && \
     pip3 install -U \
+        pip \
         setuptools && \
     pip3 install -U \
         autopep8 \
@@ -100,6 +101,7 @@ RUN mkdir -p $DOCKER_HOME/.vscode && \
         formulahendry.terminal; \
         do \
             code --install-extension $ext; \
-        done'
+        done' && \
+        chmod -R a+r $DOCKER_HOME/.config/vscode
 
 USER root
