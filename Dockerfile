@@ -102,6 +102,6 @@ RUN mkdir -p $DOCKER_HOME/.vscode && \
         do \
             code --install-extension $ext; \
         done' && \
-        chmod -R a+r $DOCKER_HOME/.config/vscode
+        chmod -R a+r $DOCKER_HOME/.config
 
 USER root
