@@ -7,7 +7,7 @@
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
 
-FROM x11vnc/desktop:latest
+FROM x11vnc/desktop:22.04.00
 LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 
 USER root
@@ -38,14 +38,12 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
         clang \
         clang-format \
         libboost-all-dev \
-        code \
-        enchant && \
+        code && \
     apt-get install -y --no-install-recommends \
         pandoc \
-        ttf-dejavu && \
+        fonts-dejavu && \
     apt-get clean && \
     curl -O https://bootstrap.pypa.io/get-pip.py && \
-    python3 get-pip.py && \
     pip3 install -U \
         setuptools \
 	ipython && \
