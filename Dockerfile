@@ -73,7 +73,7 @@ RUN mkdir -p $DOCKER_HOME/.vscode && \
         $DOCKER_HOME/.vim/bundle/Vundle.vim && \
     vim -c "PluginInstall" -c "quitall" && \
     python3 $DOCKER_HOME/.vim/bundle/YouCompleteMe/install.py \
-        --clang-completer --system-boost && \
+        --clang-completer && \
     bash -c 'for ext in \
         ms-vscode.cpptools \
         jbenden.c-cpp-flylint \
